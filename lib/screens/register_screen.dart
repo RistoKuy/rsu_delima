@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'login_screen.dart';
 import 'main_navigation_screen.dart';
 import '../services/mock_data_service.dart';
 import '../models/user.dart';

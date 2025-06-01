@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../models/appointment.dart';
 import 'main_navigation_screen.dart';
-import 'my_appointments_screen.dart';
 
 class BookingSuccessScreen extends StatelessWidget {
   final Appointment appointment;

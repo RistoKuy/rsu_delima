@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../models/polyclinic.dart';
-import '../models/doctor.dart';
 import '../services/mock_data_service.dart';
 import '../widgets/page_header_widget.dart';
 import '../widgets/doctor_list_item_widget.dart';

@@ -57,12 +57,11 @@ class HomeScreen extends StatelessWidget {
                                 ),
                               ),
                             ],
-                          ),
-                        ),
+                          ),                        ),
                         Container(
                           padding: const EdgeInsets.all(8),
                           decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.2),
+                            color: Colors.white.withValues(alpha: 0.2),
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: const Icon(
@@ -184,11 +183,10 @@ class HomeScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(16),
                       ),
                       child: Row(
-                        children: [
-                          Container(
+                        children: [                          Container(
                             padding: const EdgeInsets.all(12),
                             decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.2),
+                              color: Colors.white.withValues(alpha: 0.2),
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: const Icon(
@@ -256,10 +254,9 @@ class _QuickActionCard extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: [
+          borderRadius: BorderRadius.circular(16),          boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black.withValues(alpha: 0.1),
               blurRadius: 10,
               offset: const Offset(0, 5),
             ),
@@ -268,9 +265,8 @@ class _QuickActionCard extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: color.withOpacity(0.1),
+              padding: const EdgeInsets.all(16),              decoration: BoxDecoration(
+                color: color.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Icon(
@@ -308,10 +304,9 @@ class _NextAppointmentCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.blue.shade100),
-        boxShadow: [
+        border: Border.all(color: Colors.blue.shade100),        boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, 5),
           ),
