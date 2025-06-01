@@ -27,12 +27,10 @@ class RSUDelimaApp extends StatelessWidget {
   const RSUDelimaApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+  Widget build(BuildContext context) {    return MaterialApp(
       title: 'RSU Delima',
       theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.light, // Force light mode for professional, inclusive design
       home: const SplashScreen(),
       debugShowCheckedModeBanner: false,
       // Disable implicit animations for better performance
