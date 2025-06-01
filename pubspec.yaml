@@ -1,5 +1,5 @@
 name: rsu_delima
-description: "A new Flutter project."
+description: "RSU Delima - Hospital Management App"
 publish_to: 'none'
 version: 0.1.0
 
@@ -17,8 +17,27 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.14.1
 
 flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    - assets/icons/
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  web:
+    generate: true
+    image_path: "assets/icons/logo_rsu_delima.png"
+    background_color: "#2196F3"
+    theme_color: "#2196F3"
+  windows:
+    generate: true
+    image_path: "assets/icons/logo_rsu_delima.png"
+    icon_size: 48
+  macos:
+    generate: true
+    image_path: "assets/icons/logo_rsu_delima.png"
+  image_path: "assets/icons/logo_rsu_delima.png"
