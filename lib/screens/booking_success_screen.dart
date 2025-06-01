@@ -10,16 +10,16 @@ class BookingSuccessScreen extends StatelessWidget {
     super.key,
     required this.appointment,
   });
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            children: [
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              children: [
               const SizedBox(height: 60),
               
               // Success Animation
@@ -184,7 +184,7 @@ class BookingSuccessScreen extends StatelessWidget {
                 ),
               ),
               
-              const Spacer(),
+              const SizedBox(height: 40),
               
               // Action Buttons
               Column(
@@ -244,8 +244,10 @@ class BookingSuccessScreen extends StatelessWidget {
                     ),
                   ),
                 ],
-              ),
-            ],
+                ),
+                const SizedBox(height: 24), // Add bottom spacing
+              ],
+            ),
           ),
         ),
       ),
