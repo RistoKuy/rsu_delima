@@ -70,11 +70,9 @@ class _MyAppointmentsScreenState extends State<MyAppointmentsScreen>
               child: const Text('No'),
             ),
             TextButton(
-              onPressed: () {
-                MockDataService.cancelAppointment(appointmentId);
+              onPressed: () {                MockDataService.cancelAppointment(appointmentId);
                 _loadAppointments();
-                Navigator.of(context).pop();
-                ScaffoldMessenger.of(context).showSnackBar(
+                Navigator.of(context).pop();                ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                     content: Text('Appointment cancelled successfully'),
                     backgroundColor: Colors.orange,
@@ -88,28 +86,27 @@ class _MyAppointmentsScreenState extends State<MyAppointmentsScreen>
       },
     );
   }
-
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       appBar: const PageHeaderWidget(
         title: 'My Appointments',
         showBackButton: false,
       ),
       body: Column(
-        children: [
-          Container(
+        children: [          Container(
             margin: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: Colors.grey[200],
+              color: theme.colorScheme.surface,
               borderRadius: BorderRadius.circular(25),
             ),
             child: TabBar(
               controller: _tabController,
-              labelColor: Colors.white,
-              unselectedLabelColor: Colors.grey[600],
+              labelColor: theme.colorScheme.onPrimary,
+              unselectedLabelColor: theme.colorScheme.onSurface.withValues(alpha: 0.6),
               indicator: BoxDecoration(
-                color: Theme.of(context).primaryColor,
+                color: theme.primaryColor,
                 borderRadius: BorderRadius.circular(25),
               ),
               indicatorSize: TabBarIndicatorSize.tab,
@@ -166,12 +163,12 @@ class _MyAppointmentsScreenState extends State<MyAppointmentsScreen>
       ),
     );
   }
-
   Widget _buildEmptyState({
     required IconData icon,
     required String title,
     required String subtitle,
   }) {
+    final theme = Theme.of(context);
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(32),
@@ -181,31 +178,28 @@ class _MyAppointmentsScreenState extends State<MyAppointmentsScreen>
             Container(
               padding: const EdgeInsets.all(24),
               decoration: BoxDecoration(
-                color: Colors.grey[100],
+                color: theme.colorScheme.surfaceContainerHighest,
                 borderRadius: BorderRadius.circular(50),
               ),
-              child: Icon(
+              child:              Icon(
                 icon,
                 size: 64,
-                color: Colors.grey[400],
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.4),
               ),
             ),
             const SizedBox(height: 24),
             Text(
               title,
-              style: const TextStyle(
-                fontSize: 20,
+              style: theme.textTheme.headlineSmall?.copyWith(
                 fontWeight: FontWeight.bold,
-                color: Colors.black87,
+                color: theme.colorScheme.onSurface,
               ),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 8),
             Text(
-              subtitle,
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.grey[600],
+              subtitle,              style: theme.textTheme.bodyLarge?.copyWith(
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
               ),
               textAlign: TextAlign.center,
             ),

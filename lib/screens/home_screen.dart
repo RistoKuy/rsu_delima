@@ -6,16 +6,14 @@ import 'find_doctor_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final user = MockDataService.currentUser;
     final upcomingAppointments = MockDataService.getUserAppointments(user?.id ?? '')
         .where((apt) => apt.status == AppointmentStatus.confirmed && apt.date.isAfter(DateTime.now()))
-        .toList();
-
-    return Scaffold(
-      backgroundColor: Colors.grey[50],
+        .toList();    return Scaffold(
+      backgroundColor: theme.scaffoldBackgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -40,44 +38,35 @@ class HomeScreen extends StatelessWidget {
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
+                            children: [                              Text(
                                 'Hello,',
-                                style: TextStyle(
-                                  color: Colors.white70,
-                                  fontSize: 16,
+                                style: theme.textTheme.bodyLarge?.copyWith(
+                                  color: theme.colorScheme.onPrimary.withValues(alpha: 0.7),
                                 ),
-                              ),
-                              Text(
+                              ),Text(
                                 user?.fullName ?? 'User',
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 24,
+                                style: theme.textTheme.headlineSmall?.copyWith(
+                                  color: theme.colorScheme.onPrimary,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ],
-                          ),                        ),
-                        Container(
-                          padding: const EdgeInsets.all(8),
+                          ),                        ),                        Container(                          padding: const EdgeInsets.all(8),
                           decoration: BoxDecoration(
-                            color: Colors.white.withValues(alpha: 0.2),
+                            color: theme.colorScheme.onPrimary.withValues(alpha: 0.2),
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          child: const Icon(
+                          child: Icon(
                             Icons.notifications,
-                            color: Colors.white,
+                            color: theme.colorScheme.onPrimary,
                             size: 24,
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 20),
-                    const Text(
-                      'How are you feeling today?',
-                      style: TextStyle(
-                        color: Colors.white70,
-                        fontSize: 16,
+                    const SizedBox(height: 20),                    Text(
+                      'How are you feeling today?',                      style: theme.textTheme.bodyLarge?.copyWith(
+                        color: theme.colorScheme.onPrimary.withValues(alpha: 0.7),
                       ),
                     ),
                   ],
@@ -89,13 +78,11 @@ class HomeScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
+                  children: [                    Text(
                       'Quick Actions',
-                      style: TextStyle(
-                        fontSize: 20,
+                      style: theme.textTheme.headlineSmall?.copyWith(
                         fontWeight: FontWeight.bold,
-                        color: Colors.black87,
+                        color: theme.colorScheme.onSurface,
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -141,13 +128,11 @@ class HomeScreen extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
+                    children: [                      Text(
                         'Next Appointment',
-                        style: TextStyle(
-                          fontSize: 20,
+                        style: theme.textTheme.headlineSmall?.copyWith(
                           fontWeight: FontWeight.bold,
-                          color: Colors.black87,
+                          color: theme.colorScheme.onSurface,
                         ),
                       ),
                       const SizedBox(height: 16),
@@ -162,13 +147,11 @@ class HomeScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
+                  children: [                    Text(
                       'Health Tips',
-                      style: TextStyle(
-                        fontSize: 20,
+                      style: theme.textTheme.headlineSmall?.copyWith(
                         fontWeight: FontWeight.bold,
-                        color: Colors.black87,
+                        color: theme.colorScheme.onSurface,
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -184,8 +167,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                       child: Row(
                         children: [                          Container(
-                            padding: const EdgeInsets.all(12),
-                            decoration: BoxDecoration(
+                            padding: const EdgeInsets.all(12),                            decoration: BoxDecoration(
                               color: Colors.white.withValues(alpha: 0.2),
                               borderRadius: BorderRadius.circular(12),
                             ),
@@ -245,27 +227,26 @@ class _QuickActionCard extends StatelessWidget {
     required this.color,
     required this.onTap,
   });
-
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return GestureDetector(
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16),          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.1),
+          color: theme.cardColor,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [            BoxShadow(
+              color: theme.shadowColor.withValues(alpha: 0.1),
               blurRadius: 10,
               offset: const Offset(0, 5),
             ),
           ],
         ),
         child: Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(16),              decoration: BoxDecoration(
+          children: [            Container(              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
                 color: color.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(12),
               ),
@@ -279,10 +260,9 @@ class _QuickActionCard extends StatelessWidget {
             Text(
               title,
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 14,
+              style: theme.textTheme.bodyMedium?.copyWith(
                 fontWeight: FontWeight.w600,
-                color: Colors.black87,
+                color: theme.colorScheme.onSurface,
               ),
             ),
           ],
@@ -296,17 +276,17 @@ class _NextAppointmentCard extends StatelessWidget {
   final Appointment appointment;
 
   const _NextAppointmentCard({required this.appointment});
-
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.blue.shade100),        boxShadow: [
+        color: theme.cardColor,        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: theme.colorScheme.primary.withValues(alpha: 0.2)),
+        boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
+            color: theme.shadowColor.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, 5),
           ),
@@ -316,16 +296,14 @@ class _NextAppointmentCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: Colors.blue.shade50,
+            children: [              Container(
+                padding: const EdgeInsets.all(8),                decoration: BoxDecoration(
+                  color: theme.colorScheme.primary.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Icon(
                   Icons.medical_services,
-                  color: Colors.blue.shade600,
+                  color: theme.colorScheme.primary,
                   size: 20,
                 ),
               ),
@@ -333,20 +311,16 @@ class _NextAppointmentCard extends StatelessWidget {
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
+                  children: [                    Text(
                       appointment.doctorName,
-                      style: const TextStyle(
-                        fontSize: 16,
+                      style: theme.textTheme.bodyLarge?.copyWith(
                         fontWeight: FontWeight.bold,
-                        color: Colors.black87,
+                        color: theme.colorScheme.onSurface,
                       ),
                     ),
                     Text(
-                      appointment.polyclinicName,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey[600],
+                      appointment.polyclinicName,                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                       ),
                     ),
                   ],
@@ -354,35 +328,31 @@ class _NextAppointmentCard extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 16),
-          Row(
+          const SizedBox(height: 16),          Row(
             children: [
-              Icon(Icons.calendar_today, size: 16, color: Colors.grey[600]),
+              Icon(Icons.calendar_today, size: 16, color: theme.colorScheme.onSurface.withValues(alpha: 0.6)),
               const SizedBox(width: 8),
               Text(
                 DateFormat('EEEE, MMM dd').format(appointment.date),
-                style: const TextStyle(fontSize: 14, color: Colors.black87),
+                style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurface),
               ),
               const SizedBox(width: 16),
-              Icon(Icons.access_time, size: 16, color: Colors.grey[600]),
+              Icon(Icons.access_time, size: 16, color: theme.colorScheme.onSurface.withValues(alpha: 0.6)),
               const SizedBox(width: 8),
               Text(
                 appointment.time,
-                style: const TextStyle(fontSize: 14, color: Colors.black87),
+                style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurface),
               ),
             ],
           ),
-          const SizedBox(height: 12),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-            decoration: BoxDecoration(
-              color: Colors.green.shade50,
+          const SizedBox(height: 12),          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),            decoration: BoxDecoration(
+              color: Colors.green.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(20),
             ),
             child: Text(
               'Queue: ${appointment.queueNumber}',
-              style: TextStyle(
-                fontSize: 12,
+              style: theme.textTheme.bodySmall?.copyWith(
                 fontWeight: FontWeight.w600,
                 color: Colors.green.shade700,
               ),

@@ -127,26 +127,33 @@ class AppTheme {
         ),
       ),
 
-      // Input Decoration theme
+    // Input Decoration theme
       inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(12),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(color: Colors.grey[300]!),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(12),
           borderSide: const BorderSide(color: primaryColor, width: 2),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(12),
           borderSide: const BorderSide(color: errorColor),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: errorColor, width: 2),
         ),
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         filled: true,
-        fillColor: surfaceColor,
+        fillColor: Colors.grey[50],
+        hintStyle: TextStyle(color: Colors.grey[600]),
+        labelStyle: TextStyle(color: Colors.grey[700]),
+        floatingLabelStyle: const TextStyle(color: primaryColor),
       ),
 
       // Bottom Navigation Bar theme
@@ -188,7 +195,6 @@ class AppTheme {
       ),
     );
   }
-
   /// Get optimized dark theme
   static ThemeData get darkTheme {
     return ThemeData(
@@ -200,7 +206,7 @@ class AppTheme {
       primaryColor: primaryColor,
       scaffoldBackgroundColor: const Color(0xFF121212),
       
-      // Similar configuration as light theme but with dark colors
+      // App Bar theme for dark mode
       appBarTheme: const AppBarTheme(
         backgroundColor: Color(0xFF1F1F1F),
         foregroundColor: Colors.white,
@@ -209,6 +215,7 @@ class AppTheme {
         systemOverlayStyle: SystemUiOverlayStyle.light,
       ),
 
+      // Card theme for dark mode
       cardTheme: CardTheme(
         color: const Color(0xFF1F1F1F),
         elevation: 2,
@@ -218,7 +225,137 @@ class AppTheme {
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       ),
 
+      // Input decoration for dark mode
+      inputDecorationTheme: InputDecorationTheme(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: Color(0xFF444444)),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: primaryColor, width: 2),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: errorColor),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: errorColor, width: 2),
+        ),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        filled: true,
+        fillColor: const Color(0xFF2D2D2D),
+        hintStyle: const TextStyle(color: Color(0xFFB0B0B0)),
+        labelStyle: const TextStyle(color: Color(0xFFE1E1E1)),
+        floatingLabelStyle: const TextStyle(color: primaryColor),
+      ),
+
+      // Elevated Button theme for dark mode
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: primaryColor,
+          foregroundColor: Colors.white,
+          elevation: 2,
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          textStyle: labelLarge,
+        ),
+      ),
+
+      // Text Button theme for dark mode
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          foregroundColor: primaryColor,
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          textStyle: labelLarge,
+        ),
+      ),
+
+      // Outlined Button theme for dark mode
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          foregroundColor: primaryColor,
+          side: const BorderSide(color: primaryColor),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          textStyle: labelLarge,
+        ),
+      ),
+
+      // Bottom Navigation Bar theme for dark mode
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        backgroundColor: Color(0xFF1F1F1F),
+        selectedItemColor: primaryColor,
+        unselectedItemColor: Color(0xFFB0B0B0),
+        type: BottomNavigationBarType.fixed,
+        elevation: 8,
+      ),
+
+      // Text theme for dark mode
+      textTheme: const TextTheme(
+        headlineLarge: TextStyle(
+          fontSize: 32,
+          fontWeight: FontWeight.bold,
+          letterSpacing: -0.5,
+          color: Color(0xFFE1E1E1),
+        ),
+        headlineMedium: TextStyle(
+          fontSize: 24,
+          fontWeight: FontWeight.w600,
+          letterSpacing: -0.25,
+          color: Color(0xFFE1E1E1),
+        ),
+        headlineSmall: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.w500,
+          color: Color(0xFFE1E1E1),
+        ),
+        bodyLarge: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.normal,
+          letterSpacing: 0.15,
+          color: Color(0xFFE1E1E1),
+        ),
+        bodyMedium: TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.normal,
+          letterSpacing: 0.25,
+          color: Color(0xFFE1E1E1),
+        ),
+        bodySmall: TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.normal,
+          letterSpacing: 0.4,
+          color: Color(0xFFB0B0B0),
+        ),
+        labelLarge: TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+          letterSpacing: 0.1,
+          color: Color(0xFFE1E1E1),
+        ),
+      ),
+
       visualDensity: VisualDensity.adaptivePlatformDensity,
+
+      // Animation theme
+      pageTransitionsTheme: const PageTransitionsTheme(
+        builders: {
+          TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+          TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+        },
+      ),
     );
   }
 }

@@ -49,7 +49,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
     setState(() {
       _isLoading = false;
-    });    if (mounted) {
+    });
+
+    if (mounted) {
       await Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => const MainNavigationScreen()),
       );
@@ -58,8 +60,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: theme.scaffoldBackgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24),
@@ -75,32 +80,28 @@ class _LoginScreenState extends State<LoginScreen> {
                     width: 100,
                     height: 100,
                     decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
+                      color: theme.primaryColor,
                       borderRadius: BorderRadius.circular(50),
                     ),
-                    child: const Icon(
+                    child: Icon(
                       Icons.local_hospital,
                       size: 50,
-                      color: Colors.white,
+                      color: colorScheme.onPrimary,
                     ),
                   ),
                 ),
                 const SizedBox(height: 24),
-                const Text(
+                Text(
                   'Welcome Back',
-                  style: TextStyle(
-                    fontSize: 28,
+                  style: theme.textTheme.headlineMedium?.copyWith(
                     fontWeight: FontWeight.bold,
-                    color: Colors.black87,
                   ),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 8),
-                const Text(
-                  'Sign in to your account',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey,
+                Text(
+                  'Sign in to your account',                  style: theme.textTheme.bodyLarge?.copyWith(
+                    color: colorScheme.onSurface.withValues(alpha: 0.7),
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -108,14 +109,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 TextFormField(
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Email',
-                    prefixIcon: const Icon(Icons.email),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    filled: true,
-                    fillColor: Colors.grey[50],
+                    prefixIcon: Icon(Icons.email),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -144,11 +140,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         });
                       },
                     ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    filled: true,
-                    fillColor: Colors.grey[50],
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -178,33 +169,32 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 24),
                 ElevatedButton(
                   onPressed: _isLoading ? null : _login,
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
                   child: _isLoading
-                      ? const SizedBox(
+                      ? SizedBox(
                           height: 20,
                           width: 20,
                           child: CircularProgressIndicator(
                             strokeWidth: 2,
-                            valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              colorScheme.onPrimary,
+                            ),
                           ),
                         )
-                      : const Text(
+                      : Text(
                           'Login',
-                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                          style: theme.textTheme.labelLarge?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                 ),
                 const SizedBox(height: 24),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
-                      'Don\'t have an account? ',
-                      style: TextStyle(color: Colors.grey),
+                    Text(
+                      'Don\'t have an account? ',                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: colorScheme.onSurface.withValues(alpha: 0.7),
+                      ),
                     ),
                     TextButton(
                       onPressed: () {

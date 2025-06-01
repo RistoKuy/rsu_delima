@@ -94,16 +94,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
       );
     }
   }
-
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          icon: Icon(Icons.arrow_back, color: theme.colorScheme.onSurface),
           onPressed: () => Navigator.pop(context),
         ),
       ),
@@ -113,37 +113,27 @@ class _RegisterScreenState extends State<RegisterScreen> {
           child: Form(
             key: _formKey,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const Text(
+              crossAxisAlignment: CrossAxisAlignment.stretch,              children: [
+                Text(
                   'Create Account',
-                  style: TextStyle(
-                    fontSize: 28,
+                  style: theme.textTheme.headlineMedium?.copyWith(
                     fontWeight: FontWeight.bold,
-                    color: Colors.black87,
+                    color: theme.colorScheme.onSurface,
                   ),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 8),
-                const Text(
-                  'Please fill in your information',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey,
+                Text(
+                  'Please fill in your information',                  style: theme.textTheme.bodyLarge?.copyWith(
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                   ),
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 32),
-                TextFormField(
+                const SizedBox(height: 32),                TextFormField(
                   controller: _fullNameController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Full Name',
-                    prefixIcon: const Icon(Icons.person),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    filled: true,
-                    fillColor: Colors.grey[50],
+                    prefixIcon: Icon(Icons.person),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -156,14 +146,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 TextFormField(
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Email',
-                    prefixIcon: const Icon(Icons.email),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    filled: true,
-                    fillColor: Colors.grey[50],
+                    prefixIcon: Icon(Icons.email),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -175,40 +160,29 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     return null;
                   },
                 ),
-                const SizedBox(height: 16),
-                InkWell(
+                const SizedBox(height: 16),                InkWell(
                   onTap: _selectDate,
                   child: InputDecorator(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Date of Birth',
-                      prefixIcon: const Icon(Icons.calendar_today),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      filled: true,
-                      fillColor: Colors.grey[50],
+                      prefixIcon: Icon(Icons.calendar_today),
                     ),
                     child: Text(
                       _selectedDate == null
                           ? 'Select your date of birth'
                           : DateFormat('MMM dd, yyyy').format(_selectedDate!),
-                      style: TextStyle(
-                        color: _selectedDate == null ? Colors.grey : Colors.black,
+                      style: TextStyle(                        color: _selectedDate == null 
+                            ? theme.colorScheme.onSurface.withValues(alpha: 0.6)
+                            : theme.colorScheme.onSurface,
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(height: 16),
-                DropdownButtonFormField<String>(
+                const SizedBox(height: 16),                DropdownButtonFormField<String>(
                   value: _selectedGender,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Gender',
-                    prefixIcon: const Icon(Icons.wc),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    filled: true,
-                    fillColor: Colors.grey[50],
+                    prefixIcon: Icon(Icons.wc),
                   ),
                   items: ['Male', 'Female'].map((String value) {
                     return DropdownMenuItem<String>(
@@ -222,18 +196,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     });
                   },
                 ),
-                const SizedBox(height: 16),
-                TextFormField(
+                const SizedBox(height: 16),                TextFormField(
                   controller: _phoneController,
                   keyboardType: TextInputType.phone,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Phone Number',
-                    prefixIcon: const Icon(Icons.phone),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    filled: true,
-                    fillColor: Colors.grey[50],
+                    prefixIcon: Icon(Icons.phone),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -242,18 +210,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     return null;
                   },
                 ),
-                const SizedBox(height: 16),
-                TextFormField(
+                const SizedBox(height: 16),                TextFormField(
                   controller: _addressController,
                   maxLines: 2,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Address',
-                    prefixIcon: const Icon(Icons.location_on),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    filled: true,
-                    fillColor: Colors.grey[50],
+                    prefixIcon: Icon(Icons.location_on),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -262,21 +224,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     return null;
                   },
                 ),
-                const SizedBox(height: 16),
-                TextFormField(
+                const SizedBox(height: 16),                TextFormField(
                   controller: _bpjsController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'BPJS Number (Optional)',
-                    prefixIcon: const Icon(Icons.credit_card),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    filled: true,
-                    fillColor: Colors.grey[50],
+                    prefixIcon: Icon(Icons.credit_card),
                   ),
                 ),
-                const SizedBox(height: 16),
-                TextFormField(
+                const SizedBox(height: 16),                TextFormField(
                   controller: _passwordController,
                   obscureText: _obscurePassword,
                   decoration: InputDecoration(
@@ -292,11 +247,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         });
                       },
                     ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    filled: true,
-                    fillColor: Colors.grey[50],
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -308,8 +258,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     return null;
                   },
                 ),
-                const SizedBox(height: 16),
-                TextFormField(
+                const SizedBox(height: 16),                TextFormField(
                   controller: _confirmPasswordController,
                   obscureText: _obscureConfirmPassword,
                   decoration: InputDecoration(
@@ -325,11 +274,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         });
                       },
                     ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    filled: true,
-                    fillColor: Colors.grey[50],
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -349,28 +293,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
-                  ),
-                  child: _isLoading
-                      ? const SizedBox(
+                  ),                  child: _isLoading
+                      ? SizedBox(
                           height: 20,
                           width: 20,
                           child: CircularProgressIndicator(
                             strokeWidth: 2,
-                            valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              theme.colorScheme.onPrimary,
+                            ),
                           ),
                         )
-                      : const Text(
+                      : Text(
                           'Sign Up',
-                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                          style: theme.textTheme.labelLarge?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: theme.colorScheme.onPrimary,
+                          ),
                         ),
                 ),
-                const SizedBox(height: 24),
-                Row(
+                const SizedBox(height: 24),                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
-                      'Already have an account? ',
-                      style: TextStyle(color: Colors.grey),
+                    Text(
+                      'Already have an account? ',                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+                      ),
                     ),
                     TextButton(
                       onPressed: () {

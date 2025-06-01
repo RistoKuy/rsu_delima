@@ -11,9 +11,9 @@ class AppointmentCardWidget extends StatelessWidget {
     required this.appointment,
     this.onCancel,
   });
-
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       elevation: 2,
@@ -28,20 +28,16 @@ class AppointmentCardWidget extends StatelessWidget {
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
+                    children: [                      Text(
                         appointment.doctorName,
-                        style: const TextStyle(
-                          fontSize: 16,
+                        style: theme.textTheme.bodyLarge?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        appointment.polyclinicName,
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey[600],
+                        appointment.polyclinicName,                        style: theme.textTheme.bodyMedium?.copyWith(
+                          color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                         ),
                       ),
                     ],
@@ -64,42 +60,37 @@ class AppointmentCardWidget extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 12),
-            Row(
+            const SizedBox(height: 12),            Row(
               children: [
-                Icon(Icons.calendar_today, size: 16, color: Colors.grey[600]),
+                Icon(Icons.calendar_today, size: 16, color: theme.colorScheme.onSurface.withValues(alpha: 0.6)),
                 const SizedBox(width: 8),
                 Text(
                   DateFormat('EEEE, MMM dd, yyyy').format(appointment.date),
-                  style: const TextStyle(fontSize: 14),
+                  style: theme.textTheme.bodyMedium,
                 ),
               ],
             ),
             const SizedBox(height: 4),
             Row(
-              children: [
-                Icon(Icons.access_time, size: 16, color: Colors.grey[600]),
+              children: [                Icon(Icons.access_time, size: 16, color: theme.colorScheme.onSurface.withValues(alpha: 0.6)),
                 const SizedBox(width: 8),
                 Text(
                   appointment.time,
-                  style: const TextStyle(fontSize: 14),
+                  style: theme.textTheme.bodyMedium,
                 ),
                 const SizedBox(width: 16),
-                Icon(Icons.confirmation_number, size: 16, color: Colors.grey[600]),
+                Icon(Icons.confirmation_number, size: 16, color: theme.colorScheme.onSurface.withValues(alpha: 0.6)),
                 const SizedBox(width: 8),
                 Text(
                   'Queue: ${appointment.queueNumber}',
-                  style: const TextStyle(fontSize: 14),
+                  style: theme.textTheme.bodyMedium,
                 ),
               ],
             ),
             if (appointment.reasonForVisit.isNotEmpty) ...[
-              const SizedBox(height: 8),
-              Text(
-                'Reason: ${appointment.reasonForVisit}',
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Colors.grey[700],
+              const SizedBox(height: 8),              Text(
+                'Reason: ${appointment.reasonForVisit}',                style: theme.textTheme.bodySmall?.copyWith(
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                   fontStyle: FontStyle.italic,
                 ),
               ),
