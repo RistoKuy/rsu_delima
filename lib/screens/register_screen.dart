@@ -38,9 +38,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
     _bpjsController.dispose();
     super.dispose();
   }
-
   Future<void> _selectDate() async {
-    final DateTime? picked = await showDatePicker(
+    final picked = await showDatePicker(
       context: context,
       initialDate: DateTime(1990),
       firstDate: DateTime(1930),
@@ -89,10 +88,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     setState(() {
       _isLoading = false;
-    });
-
-    if (mounted) {
-      Navigator.of(context).pushReplacement(
+    });    if (mounted) {
+      await Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => const MainNavigationScreen()),
       );
     }

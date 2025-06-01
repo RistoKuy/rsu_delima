@@ -42,10 +42,9 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
     
     // Find the next occurrence of the selected day
     final daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-    final selectedDayIndex = daysOfWeek.indexOf(widget.selectedDay);
-    final currentDayIndex = today.weekday - 1;
+    final selectedDayIndex = daysOfWeek.indexOf(widget.selectedDay);    final currentDayIndex = today.weekday - 1;
     
-    int daysToAdd = selectedDayIndex - currentDayIndex;
+    var daysToAdd = selectedDayIndex - currentDayIndex;
     if (daysToAdd <= 0) {
       daysToAdd += 7; // Next week
     }
@@ -88,10 +87,8 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
 
     setState(() {
       _isLoading = false;
-    });
-
-    if (mounted) {
-      Navigator.of(context).pushReplacement(
+    });    if (mounted) {
+      await Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => BookingSuccessScreen(appointment: appointment),
         ),

@@ -204,16 +204,14 @@ class MockDataService {
 
   static List<String> getAvailableTimeSlots(String doctorId, String day) {
     final doctor = getDoctorById(doctorId);
-    if (doctor == null) return [];
-
-    final schedule = doctor.schedules.where((s) => s.day == day).firstOrNull;
+    if (doctor == null) return [];    final schedule = doctor.schedules.where((s) => s.day == day).firstOrNull;
     if (schedule == null) return [];
-
-    final List<String> allSlots = [];
+    
+    final allSlots = <String>[];
     final startHour = int.parse(schedule.startTime.split(':')[0]);
     final endHour = int.parse(schedule.endTime.split(':')[0]);
 
-    for (int hour = startHour; hour < endHour; hour++) {
+    for (var hour = startHour; hour < endHour; hour++) {
       final timeSlot = '${hour.toString().padLeft(2, '0')}:00';
       if (!schedule.bookedSlots.contains(timeSlot)) {
         allSlots.add(timeSlot);

@@ -49,10 +49,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
     setState(() {
       _isLoading = false;
-    });
-
-    if (mounted) {
-      Navigator.of(context).pushReplacement(
+    });    if (mounted) {
+      await Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => const MainNavigationScreen()),
       );
     }
